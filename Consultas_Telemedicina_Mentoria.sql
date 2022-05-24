@@ -139,19 +139,6 @@ GROUP BY  client, mes
 ORDER BY mes; -- saber quantos exames por mes solicitou
 
 
--- marido que fez o de baixo que é com subquery de subquery
-/*/SELECT client_name, COUNT(speciality_x) AS exames, MONTH(CAST(create_date AS DATE)) AS mes
-FROM ocupacao
-WHERE client = ( SELECT client 
-                   FROM (SELECT client, COUNT(speciality_x) AS exames
-					       FROM ocupacao
-						  GROUP BY client
-					      ORDER BY exames DESC
-                          LIMIT 1) AS tb1
-				)
-GROUP BY client, mes
-ORDER BY mes ASC;/*/
-
 -- 2) Valor total dos exames que solicitou, por mês;
 SELECT client_name, SUM(value) AS valor_ttl_exames, MONTH(CAST(create_date AS DATE)) AS mes
 FROM ocupacao
