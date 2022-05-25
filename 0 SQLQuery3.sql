@@ -1,4 +1,4 @@
--- COMEL«ANDO A ANALISAR AS TABELAS, comeÁamos com a primeira tabela
+-- COMEL√áANDO A ANALISAR AS TABELAS, come√ßamos com a primeira tabela
 -- ver quais os campos que ela possui
 SELECT TOP 10 * FROM dbo.olist_customers_dataset
 
@@ -8,7 +8,7 @@ SELECT TOP 10 * FROM dbo.olist_customers_dataset
 CREATE TABLE tb_atual_olist_costumer 
 --pode aparecer como tb_act de actual ou ainda tb_fact de fato
 (
-	customer_id nvarchar(150), --nvarchar significa que È um campo texto de tamanhos 
+	customer_id nvarchar(150), --nvarchar significa que √© um campo texto de tamanhos 
 	--variaveis, podendo ter registro com poucos ou muitos caracteres
 	customer_unique_id nvarchar(150),
 	customer_zip_code_prefix nvarchar(15),
@@ -20,12 +20,12 @@ CREATE TABLE tb_atual_olist_costumer
 SELECT * FROM tb_atual_olist_costumer
 
 -- inserindo na tabela criada TODAS as informacoes que estao contidas na tabela
--- de carga unindo um insert into com o select from, j· que a ordem em que os campos
--- foram criados na tabela de producao È a mesma È sÛ dizer o nome de onde vem a tabela
+-- de carga unindo um insert into com o select from, j√° que a ordem em que os campos
+-- foram criados na tabela de producao √© a mesma √© s√≥ dizer o nome de onde vem a tabela
 -- caso contrario, teria que ir dizendo a ordem na qual selecionar um por um, separando
 -- por virgula
 INSERT INTO tb_atual_olist_costumer SELECT * FROM dbo.olist_customers_dataset 
---N√O RODAR NOVAMENTE PARA NAO DUPLICAR AS INFORMACOES
+--N√ÉO RODAR NOVAMENTE PARA NAO DUPLICAR AS INFORMACOES
 
 -- outros tipos de tipos de dados para usar aqui seriam os
 -- int para numeros inteiros 1,2,3,4,5,
@@ -33,7 +33,7 @@ INSERT INTO tb_atual_olist_costumer SELECT * FROM dbo.olist_customers_dataset
 -- nvarchar para campo de texto
 -- datetime que contem a data e hora min e segundo
 
--- criar as demais tabelas producao para continuar o serviÁo
+-- criar as demais tabelas producao para continuar o servi√ßo
 CREATE TABLE tb_atual_geolocation 
 (
 	geolocation_zip_code_prefix nvarchar(15),
@@ -59,10 +59,10 @@ SELECT * FROM tb_atual_pedidos
 
 -- inserir na tabela producao os dados da tabela carga onde
 -- a coluna que era varchar e deveria ser datetime
--- ja convertendo na inserÁ„o o dado de varchar para datetime
+-- ja convertendo na inser√ß√£o o dado de varchar para datetime
 INSERT INTO tb_atual_pedidos 
 SELECT order_id,order_item_id,product_id,seller_id,
-CONVERT(DATETIME, shipping_limit_date, 102), -- esse 102 È o cÛdigo do
+CONVERT(DATETIME, shipping_limit_date, 102), -- esse 102 √© o c√≥digo do
 --mysql server no estilo dos USA para datas
 price,freight_value
 FROM olist_order_items_dataset
@@ -131,7 +131,7 @@ USE [Portfolio-ias]
 SELECT * FROM tb_atual_olist_costumer
 SELECT * FROM tb_atual_ordens
 
--------- respondendo a perguntas para an·lise de dados
+-------- respondendo a perguntas para an√°lise de dados
 --- quais dos clientes cadastrados fizeram uma compra?
 -- quais os comportamentos dos clientes
 
@@ -148,7 +148,7 @@ ON pedidos.customer_id = clientes.customer_id
 -- mostrando primeiro a da tabela pedidos e depois a da tabela clientes
 
 
--- criando views para salvar a consulta para futuras an·lises
+-- criando views para salvar a consulta para futuras an√°lises
 CREATE VIEW vw_pedidos_por_clientes
 AS
 SELECT pedidos.*, clientes.customer_city, clientes.customer_state 
@@ -168,9 +168,9 @@ WHERE order_status = 'delivered'
 
 SELECT * FROM vw_pedidos_por_clientes_filtrado
 
--- criando uma planilha no excel para visualizaÁao
+-- criando uma planilha no excel para visualiza√ßao
 -- no excel, busca obter dados, do banco de dados SQL Server
 -- copia o nome do servidor da parte do sql server em conectar e mecanismo
 -- de banco de dados
--- coloca o nome do banco que È opcional mas È bom colocar
+-- coloca o nome do banco que √© opcional mas √© bom colocar
 -- na parte de instrucao sql coloca a consulta de view que se quer
