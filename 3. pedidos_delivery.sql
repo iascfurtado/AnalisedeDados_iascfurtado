@@ -148,20 +148,11 @@ GROUP BY comercio_tipo
 HAVING media_valor_pedido >= 55
 ORDER BY qtd_de_tipo DESC
 LIMIT 5;
-/*/fiquei confusa com a pergunta, qual tipo de pedido tem o valor apx do ticket médio ou
-qual tem realmente o maior ticket médio?
-sendo a primeira é pizza, pq tem mais de pizza entao proporcionalmente falando é pizza
-se for a segunda é comida peruana que é a mais cara mas também só tem 9 do tipo/*/
 
 
 /*/22. Para clientes sensíveis a cupons, qual tem o maior ticket médio? 
 (média de valor de pedidos)
-cliente_sensivel_cupom
-pode ser:
-1. alta - acima de 66% das compras
-2. média - entre 33% a 66%
-3. baixa - menos de 33%
-sensíveis são portanto os que tem sensibilidade média e alta/*/
+sensíveis são os que tem sensibilidade média e alta/*/
 SELECT cliente_sensivel_cupom AS sensibilidade_cupom,
 COUNT(cliente_sensivel_cupom) AS qtd, 
 ROUND(AVG(total_pedido),2)  AS média_de_pedido
@@ -193,17 +184,4 @@ WHERE comercio_tipo = 'Lanches'
 GROUP BY turno_pedido
 	HAVING media_pedido > 55
 ORDER BY qtd_pedidos DESC;
-/*/Na base tem 106 pedidos considerando os restaurantes que vendem lanche em sorocaba
-deles 41 tem sensibilidade média a alta (38,68% dos pedidos)
-deles 65 tem sensibilidade baixa ou outro tipo (61,32% dos pedidos)
-/*/
-SELECT COUNT(id_pedido)
-FROM base_pedidos
-WHERE comercio_tipo = 'Lanches' 
-	AND comercio_cidade = 'sorocaba';
-
-
-/*/ 25. Crie uma visualização em Data Studio com os principais indicadores que encontrou 
-na EDA e que acredita serem bons para acompanhar a operação de delivery dos restaurantes 
-parceiros./*/
 
