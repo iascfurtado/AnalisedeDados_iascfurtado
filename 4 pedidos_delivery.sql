@@ -4,7 +4,7 @@ USE mentoria_um;
 
 /*/
 LOAD DATA LOCAL INFILE 
-'C:/Users/Pichau/Google Drive/PREPARATORIO T.I/0 data/9MENTORIAS/testetecnico_pedidos_delivery/base_pedidos1.csv'
+'C:/Users/------------------------------------------/base_pedidos1.csv'
 INTO TABLE base_pedidos
 FIELDS TERMINATED BY ',' 
 LINES TERMINATED BY '\n' 
